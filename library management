@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_BOOKS 100
+
+struct Book {
+    char title[100];
+    char author[100];
+};
+
+void addBook(struct Book books[], int *count, char title[], char author[]) {
+    strcpy(books[*count].title, title);
+    strcpy(books[*count].author, author);
+    (*count)++;
+    printf("Book added: %s\n", title);
+}
+
+void showBooks(struct Book books[], int count) {
+    printf("Books in the library:\n");
+    for (int i = 0; i < count; i++) {
+        printf("- %s by %s\n", books[i].title, books[i].author);
+    }
+}
+
+int main() {
+    struct Book books[MAX_BOOKS];
+    int count = 0;
+
+    addBook(books, &count, "1984", "George Orwell");
+    addBook(books, &count, "To Kill a Mockingbird", "Harper Lee");
+    showBooks(books, count);
+
+    return 0;
+}
